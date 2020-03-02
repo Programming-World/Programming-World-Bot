@@ -73,31 +73,16 @@ async def Activity(ctx, message, description=" ", link=""):
 
 
 @bot.command()
-async def Ready(ctx):
-    await ctx.send("I'm Ready!")
+async def clear(ctx, amount):
+    if amount == "all":
+        await ctx.channel.purge()
+    else:
+        try:
+            await ctx.channel.purge(limit=int(amount) + 1) #To remove command usage too!
+        except Exception:
+            await ctx.send("Pls enter a valid option!\n1. A number\n2. all")
 
-
-@bot.command()
-async def Ping(ctx):
-    start = perf_counter()
-    message = await ctx.send("Ping...")
-    end = perf_counter()
-    duration = (end - start) * 1000
-    await message.edit(content=f"Pong! {ctx.author.mention} {duration:.2f}")
-
-
-@bot.command(aliases=['ui'])
-async def userinfo(ctx, member: discord.Member = None):
-    member = member or ctx.author
-    embed = discord.Embed(title=member.name, description=member.mention, color=0x008000)
-    embed.add_field(name="Created at", value=member.created_at, inline=False)
-    embed.add_field(name="ID", value=member.id, inline=False)
-    embed.add_field(name='Join Date', value=member.joined_at, inline=False)
-    embed.set_thumbnail(url=member.avatar_url)
-    embed.set_footer(text="Created By Nice Boy#3542")
-    await ctx.send(embed=embed)
-
-
+            
 @bot.command(aliases=["gr"])
 async def get_role(ctx, role=None):
     Role = False
@@ -117,6 +102,20 @@ async def get_role(ctx, role=None):
         await ctx.send("Pls choose from these options:\n1. Announcements\n2. Challenges\n3. LER\n4. PLOTD")
 
 
+@bot.command()
+async def ping(ctx):
+    start = perf_counter()
+    message = await ctx.send("Ping...")
+    end = perf_counter()
+    duration = (end - start) * 1000
+    await message.edit(content=f"Pong! {ctx.author.mention} {duration:.2f}")
+    
+
+@bot.command()
+async def Ready(ctx):
+    await ctx.send("I'm Ready!")
+
+    
 @bot.command(aliases=["rr"])
 async def remove_role(ctx, role=None):
     Role = False
@@ -135,5 +134,16 @@ async def remove_role(ctx, role=None):
     else:
         await ctx.send("Pls choose from these options:\n1. Announcements\n2. Challenges\n3. LER\n4. PLOTD")
 
+
+@bot.command(aliases=['ui'])
+async def userinfo(ctx, member: discord.Member = None):
+    member = member or ctx.author
+    embed = discord.Embed(title=member.name, description=member.mention, color=0x008000)
+    embed.add_field(name="Created at", value=member.created_at, inline=False)
+    embed.add_field(name="ID", value=member.id, inline=False)
+    embed.add_field(name='Join Date', value=member.joined_at, inline=False)
+    embed.set_thumbnail(url=member.avatar_url)
+    embed.set_footer(text="Created By Nice Boy#3542")
+    await ctx.send(embed=embed)
 
 bot.run("NjgyMzI1MzY3MTYzNDUzNDQ4.XlzCmQ.KbftbJV2THngb8S6BRbqYDoqxIE")
