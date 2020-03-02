@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from time import perf_counter
-bot = commands.Bot(command_prefix="pw! ")
+bot = commands.Bot(command_prefix="pwb! ")
 
 
 @bot.event
@@ -33,7 +33,14 @@ async def on_message_edit(before, after):
     if before.content == after.content:  # to avoid any duplicates
         return
     Channel = bot.get_channel(682521280859340802)
-    await Channel.send(f'{before.author} just edited "{before.content}" to "{after.content}" in {before.channel.mention}')
+    Embed = discord.Embed(title="A message was edited!", color=0xFFA500)
+    Embed.add_field(name="Author", value=before.author.mention, inline=False)
+    Embed.set_thumbnail(url=before.author.avatar_url)    
+    Embed.add_field(name="Message before being edited", value=before.content, inline=False)
+    Embed.add_field(name="Message after being edited", value=after.content, inline=False)
+    Embed.add_field(name="Channel", value=before.channel.mention, inline=False)
+    Embed.set_footer(text="Posted by Programming World#8930")
+    await Channel.send(embed=Embed)
 
 
 @bot.event
@@ -41,7 +48,13 @@ async def on_message_delete(ctx):
     if ctx.author.bot:
         return
     Channel = bot.get_channel(682521280859340802)
-    await Channel.send(f"<@{ctx.author.id}>'s message is just deleted \"{ctx.content}\" in <#{ctx.channel.id}>")
+    Embed = discord.Embed(title="A message was deleted!", color=0xFF0000)
+    Embed.add_field(name="Author", value=ctx.author.mention, inline=False)
+    Embed.set_thumbnail(url=ctx.author.avatar_url)
+    Embed.add_field(name="Message", value=ctx.content, inline=False)
+    Embed.add_field(name='Channel', value=ctx.channel.mention, inline=False)
+    Embed.set_footer(text="Posted by Programming World#8930")
+    await Channel.send(embed=Embed)
 
 
 @bot.command()
@@ -73,7 +86,7 @@ async def Ping(ctx):
     await message.edit(content=f"Pong! {ctx.author.mention} {duration:.2f}")
 
 
-@bot.command(aliases=['u', 'ui'])
+@bot.command(aliases=['ui'])
 async def userinfo(ctx, member: discord.Member = None):
     member = member or ctx.author
     embed = discord.Embed(title=member.name, description=member.mention, color=0x008000)
@@ -123,4 +136,4 @@ async def remove_role(ctx, role=None):
         await ctx.send("Pls choose from these options:\n1. Announcements\n2. Challenges\n3. LER\n4. PLOTD")
 
 
-bot.run("NjgyMzI1MzY3MTYzNDUzNDQ4.Xly56g.r1mjdFL9xicaCt5mUvCzQJYB9x0")
+bot.run("NjgzMjk4NDUxMDMwNTQwMzI5.Xlw01A.ByZwq-1ZBip8yZIH5E0dRybCBfQ")
