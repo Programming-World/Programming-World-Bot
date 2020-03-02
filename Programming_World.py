@@ -123,4 +123,4 @@ async def remove_role(ctx, role=None):
         await ctx.send("Pls choose from these options:\n1. Announcements\n2. Challenges\n3. LER\n4. PLOTD")
 
 
-bot.run("NjgzMjk4NDUxMDMwNTQwMzI5.Xlw01A.ByZwq-1ZBip8yZIH5E0dRybCBfQ")
+bot.run("NjgyMzI1MzY3MTYzNDUzNDQ4.Xly56g.r1mjdFL9xicaCt5mUvCzQJYB9x0")
