@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from time import perf_counter
-bot = commands.Bot(command_prefix="pwb! ")
+bot = commands.Bot(command_prefix="pw! ")
 
 
 @bot.event
