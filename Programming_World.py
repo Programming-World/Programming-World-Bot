@@ -135,7 +135,7 @@ async def remove_role(ctx, role=None):
         await ctx.send("Pls choose from these options:\n1. Announcements\n2. Challenges\n3. LER\n4. PLOTD")
 
 
-@bot.command(aliases=['ui'])
+@bot.command(name="user-info", aliases=['ui'])
 async def userinfo(ctx, member: discord.Member = None):
     member = member or ctx.author
     embed = discord.Embed(title=member.name, description=member.mention, color=0x008000)
@@ -143,7 +143,7 @@ async def userinfo(ctx, member: discord.Member = None):
     embed.add_field(name="ID", value=member.id, inline=False)
     embed.add_field(name='Join Date', value=member.joined_at, inline=False)
     embed.set_thumbnail(url=member.avatar_url)
-    embed.set_footer(text="Created By Nice Boy#3542")
+    embed.set_footer(text="Posted by Programming World#8930")
     await ctx.send(embed=embed)
 
 bot.run("NjgyMzI1MzY3MTYzNDUzNDQ4.XlzCmQ.KbftbJV2THngb8S6BRbqYDoqxIE")
