@@ -20,7 +20,7 @@ async def on_message(message):
             elif message.content.lower() == "short_code":
                 await message.author.send("Lovely, you found the second easter egg! To gain your role, simply go in **OWNER**'s dm and type this:\n19815182031545")
             elif message.content.lower() == "icn":
-                await ctx.author.send("Lovely, you found the third easter egg! To gain your role, simply go in **OWNER**'s dm and type this:\n9314")
+                await message.author.send("Lovely, you found the third easter egg! To gain your role, simply go in **OWNER**'s dm and type this:\n9314")
             elif message.content.lower() == "682997703101382679":
                 await message.author.send("Lovely, you found the fourth easter egg! To gain your role, simply go in **OWNER**'s dm and type this:\n142113251819")
             await message.channel.purge(limit=1)
